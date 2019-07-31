@@ -1,7 +1,7 @@
-package org.november.learning.akka.cluster
+package org.november.learning.akka.cluster.sharding
 
 import akka.actor.{Actor, ActorLogging, Props}
-import org.november.learning.akka.cluster.Device.RecordTemperature
+import Device.RecordTemperature
 
 object Device{
   case class RecordTemperature(deviceId: Int, temperature: Double)

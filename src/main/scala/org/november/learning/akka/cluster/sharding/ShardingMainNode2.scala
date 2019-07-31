@@ -1,4 +1,4 @@
-package org.november.learning.akka.cluster
+package org.november.learning.akka.cluster.sharding
 
 import akka.actor.ActorSystem
 import com.typesafe.config.ConfigFactory

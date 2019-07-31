@@ -30,3 +30,21 @@ Cluster Node [akka://cluster-sharding-learning-node2@127.0.0.1:2552] - Trying to
 ```scala
 Cluster Node [akka://cluster-sharding-learning@127.0.0.1:2552] - Welcome from [akka://cluster-sharding-learning@127.0.0.1:2551]
 ```
+
+## Cluster Singleton
+* SingletonRunnerAppNode1 and SingletonRunnerAppNode2 demonstrate two applications joining in once cluster
+* SingletonRunnerAppNode1 must be run first as it is the seed node as specified in application-singleton.conf
+* Checked the log of SingletonRunnerAppNode1 and notice that ``new Hello("World from node2")`` message being sent from
+node2 is getting log showing that the Endpoint actor ref was created as singleton within the cluster
+* When node 2 is sending a message to ``cluster-singleton-proxy`` actor ref it expects that serializaiton for 
+Endpoint.Hello is defined
+
+## Serialization
+* ``application-singleton.conf`` defines serialization required for Endpoint.Hello
+    * Key configuration required for serialization
+        * akka.extensions
+        * akka.actor.enable-additional-serialization-bindgings
+        * akka.actor.allow-java-serialization
+        * akka.actor.serializers
+        * akka.actor.serialization-bindings
+        * akka.actor.kryo
